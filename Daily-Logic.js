@@ -43,6 +43,21 @@ function isPalindrome(input)
     return normalizedInput === reversedInput;
 }
 
+// Problem 5: FizzBuzz 
+function fizzBuzz(n)
+{
+    const array = [];
+    for(let i = 1; i <= n; i++)
+    {
+        if(i % 15 === 0) array.push("FizzBuzz");
+        else if(i % 3 === 0) array.push("Fizz");
+        else if(i % 5 === 0) array.push("Buzz");
+        else array.push(i);
+    }
+
+    return array;
+}
+
 // =================== TEST RUNNER ===================
 
 function runTests() {
@@ -61,6 +76,12 @@ function runTests() {
     console.log("=== Check Palindrome ===");
     console.log(isPalindrome("A man, a plan, a canal – Panama") === true);
     console.log(isPalindrome("it's not a = palindrome.") === false);
+
+    console.log("=== FizzBuzz ===");
+    const fb = fizzBuzz(15);
+    console.log(fb[2] === "Fizz");       // 3
+    console.log(fb[4] === "Buzz");       // 5
+    console.log(fb[14] === "FizzBuzz");  // 15
 
 }
 
