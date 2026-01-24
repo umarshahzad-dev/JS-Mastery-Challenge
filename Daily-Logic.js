@@ -35,6 +35,13 @@ function removeDuplicates(arr) {
     return [...uniqueValues];
 }
 
+// Problem 4: Checks if input is a Palindrome
+function isPalindrome(input)
+{
+    const normalizedInput = input.toLowerCase().replace(/[^\w]|_/g, "");
+    const reversedInput = normalizedInput.split('').reverse().join('');
+    return normalizedInput === reversedInput;
+}
 
 // =================== TEST RUNNER ===================
 
@@ -50,6 +57,11 @@ function runTests() {
     console.log("=== Remove Duplicates ===");
     const result = removeDuplicates([0, 1, 2, 2, 3]);
     console.log(result.length === 4);
+
+    console.log("=== Check Palindrome ===");
+    console.log(isPalindrome("A man, a plan, a canal – Panama") === true);
+    console.log(isPalindrome("it's not a = palindrome.") === false);
+
 }
 
 runTests();
