@@ -58,6 +58,18 @@ function fizzBuzz(n)
     return array;
 }
 
+// Problem 6: Format Weather API Data
+function formatWeatherData(data)
+{
+    const { name } = data;
+    const { temp } = data.main;
+    const { description } = data.weather[0];
+
+    const celsiusTemp = Math.round(temp - 273.15);
+    return `The weather in ${name} is ${description} with a temperature of ${celsiusTemp}°C.`
+
+}
+
 // =================== TEST RUNNER ===================
 
 function runTests() {
@@ -82,6 +94,14 @@ function runTests() {
     console.log(fb[2] === "Fizz");       // 3
     console.log(fb[4] === "Buzz");       // 5
     console.log(fb[14] === "FizzBuzz");  // 15
+
+    console.log("=== Format Weather Data ===");
+    const apiResponse = {
+    main: { temp: 295.15, humidity: 80 },
+    weather: [{ description: "light rain" }],
+    name: "Istanbul"
+    };
+    console.log(formatWeatherData(apiResponse));
 
 }
 
