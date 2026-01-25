@@ -92,6 +92,12 @@ function runTests() {
     console.log("=== Remove Duplicates ===");
     const result = removeDuplicates([0, 1, 2, 2, 3]);
     console.log(result.length === 4);
+    console.log(
+    removeDuplicates([7, 7, 7, 7]).length === 1
+    );
+    console.log(
+        removeDuplicates(["cat", "dog", 42, true, "cat", 42]).length === 4
+    );
 
     console.log("=== Check Palindrome ===");
     console.log(isPalindrome("A man, a plan, a canal – Panama") === true);
