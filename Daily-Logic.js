@@ -82,6 +82,12 @@ function runTests() {
     console.log(
         findLongestWord("Finding the longest word in this sentence.") === "sentence"
     );
+    console.log(
+    findLongestWord("I love to code in JavaScript every single day") === "JavaScript"
+    );
+    console.log(
+        findLongestWord("The 2025 supercalifragilisticexpialidocious weather is amazing!!!") === "supercalifragilisticexpialidocious"
+    );
 
     console.log("=== Remove Duplicates ===");
     const result = removeDuplicates([0, 1, 2, 2, 3]);
