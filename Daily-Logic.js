@@ -75,6 +75,8 @@ function formatWeatherData(data)
 function runTests() {
     console.log("=== Reverse String ===");
     console.log(reverseString("Reverse") === "esreveR");
+    console.log(reverseString("new test case") === "esac tset wen");
+    console.log(reverseString("One more test-case") === "esac-tset erom enO");
 
     console.log("=== Longest Word ===");
     console.log(
