@@ -119,6 +119,19 @@ function runTests() {
     };
     console.log(formatWeatherData(apiResponse));
 
+    const apiResponse1 = {
+    main: { temp: 308.15, humidity: 30 },
+    weather: [{ description: "sunny" }],
+    name: "Konya"
+    };
+    console.log(formatWeatherData(apiResponse1));
+
+    const apiResponse2 = {
+    main: { temp: 270.15, humidity: 95 },
+    weather: [{ description: "heavy snow" }],
+    name: "Bursa"
+    };
+    console.log(formatWeatherData(apiResponse2));
 }
 
 runTests();
