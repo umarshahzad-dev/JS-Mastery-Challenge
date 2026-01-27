@@ -1,2 +1,4 @@
-// Async JavaScript practice
-// Next: fetchUser(id)
+async function fetchUser(id) 
+{
+    // learning about fetch(), promises, async / await.
+}
