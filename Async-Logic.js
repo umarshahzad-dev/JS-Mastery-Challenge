@@ -26,13 +26,49 @@ async function fetchUser(id)
     }
 }
 
+// Problem 8: Fetch Multiple Users in Parallel
+// Description:
+// Takes an array of user IDs and fetches all users simultaneously.
+// The function should resolve only if ALL requests succeed.
+// If ANY request fails, the entire operation should fail.
+// 
+// Concepts:
+// Promise.all()
+// Parallel async execution
+// Error propagation
+// API data aggregation
+
+async function fetchMultipleUsers(ids) {
+
+    try {
+        const fetchPromises = ids.map(async (i) => 
+        {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${i}`);
+            if(!response.ok)
+            {
+                throw new Error("Failed to fetch Users.");
+            }
+            return response.json();
+        });
+    const users = await Promise.all(fetchPromises);
+
+    return users.map(obj => obj.name);
+
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 
 // =================== TEST ===================
 
 async function runTest()
 {
-    const result = await fetchUser(2);
-    console.log(result);
+    const fetchUserResult = await fetchUser(2);
+    console.log(fetchUserResult);
+
+    const fetchMultipleUsersResult = await fetchMultipleUsers([1, 2, 3]);
+    console.log(fetchMultipleUsersResult);
 }
 
 
