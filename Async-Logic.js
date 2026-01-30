@@ -99,6 +99,52 @@ async function fetchFirst(id1, id2) {
 }
 
 
+// Problem 10: Retry Fetch Request
+// Description:
+// Attempts to fetch data from a given URL.
+// If the request fails, it retries up to `maxRetries` times.
+// The function resolves ONLY if a request eventually succeeds.
+// If all retry attempts fail, the function throws an error.
+//
+// Concepts used:
+// - async / await
+// - try / catch
+// - Promise resolution vs rejection
+// - Recursive retry logic
+// - Error propagation
+//
+// Parameters:
+// url (string): API endpoint to fetch from
+// maxRetries (number): number of retry attempts allowed
+//
+// Returns:
+// Promise<object> — parsed JSON response on success
+//
+// Throws:
+// Error — when all retry attempts fail
+async function fetchWithRetry(url, maxRetries) {
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+
+            if (maxRetries > 0) {
+                return fetchWithRetry(url, maxRetries - 1);
+            }
+
+            throw new Error("All retry attempts failed");
+        }
+
+        const data = await response.json();
+        return data;
+
+    } catch (error) {
+        console.error("fetchWithRetry failed:", error.message);
+
+        throw error;
+    }
+}
+
 
 
 // =================== TEST ===================
@@ -113,6 +159,21 @@ async function runTest()
 
     const fetchFirstResult = await fetchFirst(1,2);
     console.log(fetchFirstResult);
+
+    // const fetchWithRetryResult = await fetchWithRetry(`https://jsonplaceholder.typicode.com/postsa/1` , 2);
+    // console.log(fetchWithRetryResult);
+
+    try {
+        const fetchWithRetryResult = await fetchWithRetry(
+            "https://jsonplaceholder.typicode.com/postsa/1",
+            2
+        );
+        console.log(fetchWithRetryResult);
+    } catch (error) {
+        console.log("Handled in runTest:", error.message);
+    }
+
+
 }
 
 
